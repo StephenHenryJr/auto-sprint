@@ -7,10 +7,8 @@ import { Combobox, Transition } from "@headlessui/react";
 import { manufacturers } from "@/contstants";
 import { SearchManufacturerProps } from "@/types";
 
-const SearchManufacturer = ({
-  manufacturer,
-  setManufacturer,
-}: SearchManufacturerProps) => {
+const SearchManufacturer = ({ manufacturer, setManufacturer, }: SearchManufacturerProps) => {
+
   const [query, setQuery] = useState("");
 
   const filteredManufacturers =
