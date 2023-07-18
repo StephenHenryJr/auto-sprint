@@ -18,40 +18,35 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 // Fetch our cars from our API
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
+  const { manufacturer, year, model, limit, fuel } = filters;
   // Set the required headers for the API request
   const headers: HeadersInit = {
     "X-RapidAPI-Key": "dc0c32a409msh847f1dac53b04a2p14928cjsn1c430baa58a3",
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
-
   // Set the required headers for the API request
   const response = await fetch(
-    'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=accord',
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
     {
       headers: headers,
     }
   );
-
   // Parse the response as JSON
   const result = await response.json();
   return result;
 }
 
-
 // Generate images of cars for our CarDetails component
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL("https://cdn.imagin.studio/getimage");
-
   const { make, year, model } = car;
-
   url.searchParams.append('customer', 'copyright-imaginstudio');
   url.searchParams.append('make', make);
   url.searchParams.append('modelFamily', model.split(" ")[0]);
   url.searchParams.append('zoomType', 'fullscreen');
   url.searchParams.append('modelYear', `${year}`);
   url.searchParams.append('angle', `${angle}`);
-
   return `${url}`;
 } 
 
@@ -59,3 +54,15 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 
 // https://cdn.imagin.studio/getImage?customer=copyright-imaginstudio&make=acura&modelFamily=tlx&angle=23&width=2600&zoomType=fullscreen
 
+export const updateSearchParams = (type: string, value: string) => {
+  // Get the current URL search params
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // Set the specified search parameter to the given value
+  searchParams.set(type, value);
+
+  // Set the specified search parameter to the given value
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
+  return newPathname;
+};
