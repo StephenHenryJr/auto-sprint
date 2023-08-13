@@ -50,10 +50,6 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   return `${url}`;
 } 
 
-// https://cdn.imagin.studio/getimage?customer=hrjavascript-mastery&make=porsche&modelFamily=911&zoomType=fullscreen&modelYear=1994&angle=undefined
-
-// https://cdn.imagin.studio/getImage?customer=copyright-imaginstudio&make=acura&modelFamily=tlx&angle=23&width=2600&zoomType=fullscreen
-
 export const updateSearchParams = (type: string, value: string) => {
   // Get the current URL search params
   const searchParams = new URLSearchParams(window.location.search);

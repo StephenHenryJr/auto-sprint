@@ -22,16 +22,6 @@ const SearchBar = () => {
 
   const router = useRouter();
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (manufacturer.trim() === "" && model.trim() === "") {
-      return alert("Please provide some input");
-    }
-
-    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
-  };
-
   const updateSearchParams = (model: string, manufacturer: string) => {
     // Create a new URLSearchParams object using the current URL search parameters
     const searchParams = new URLSearchParams(window.location.search);
@@ -51,11 +41,19 @@ const SearchBar = () => {
     }
 
     // Generate the new pathname with the updated search parameters
-    const newPathname = `${
-      window.location.pathname
-    }?${searchParams.toString()}`;
-
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
     router.push(newPathname);
+  };
+
+  //The function is triggered when a form is submitted, as indicated by the e: React.FormEvent<HTMLFormElement> parameter.
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (manufacturer.trim() === "" && model.trim() === "") {
+      return alert("Please provide some input");
+    }
+
+    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
   };
 
   return (

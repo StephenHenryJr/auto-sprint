@@ -5,11 +5,12 @@ import { fuels, yearsOfProduction } from "@/contstants";
 import { HomeProps } from "@/types";
 
 export default async function Home({ searchParams }: HomeProps) {
+  
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
-    year: searchParams.year || 2022,
+    year: searchParams.year || 2023,
     fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
+    limit: searchParams.limit || 12,
     model: searchParams.model || "",
   });
 
@@ -18,6 +19,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="overflow-hidden">
       <Hero />
+      
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
