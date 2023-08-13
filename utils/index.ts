@@ -1,4 +1,4 @@
-import { CarProps, FilterProps } from "@types";
+import { CarProps, FilterProps } from "@/types";
 
 
 // Generated function to calculate rent of car
@@ -22,7 +22,7 @@ export async function fetchCars(filters: FilterProps) {
   const { manufacturer, year, model, limit, fuel } = filters;
   // Set the required headers for the API request
   const headers: HeadersInit = {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY,
+    "X-RapidAPI-Key": process.env.RAPID_API_KEY as string,
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
   // Set the required headers for the API request
